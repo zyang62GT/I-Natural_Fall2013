@@ -13,6 +13,7 @@ const int countdown2 = 10;  // Countdown
 const int countdown3 = 9;  // Countdown
 const int player1LED = 8;
 const int player2LED = 7;
+const int resetButton = 4;
 
 /*********************/
 /******* Setup *******/
@@ -32,6 +33,9 @@ void setup() {
     // Setup Player LEDs
     pinMode(player1LED, OUTPUT);
     pinMode(player2LED, OUTPUT);
+    
+    // Setup Reset Button
+    pinMode(resetButton, INPUT);
 }
 
 /*********************/
@@ -41,7 +45,7 @@ void loop()
 {
   // Setup Variables
   float ratio = 1;
-  int increment = 0, cycleCount = 0;
+  int increment = 0, cycleCount = 0, reset=0;
   const int MaxAngle = 72, WinCondition = 2;
   int angle = (MaxAngle/2)-1, playerWin=0;
   int sensorValue1=0, sensorValue2=0;
@@ -85,6 +89,8 @@ void loop()
     // Read Analog Input
     sensorValue1 = analogRead(A3) + 1;
     sensorValue2 = analogRead(A4) + 1;
+    reset = digitalRead(resetButton);
+    if(reset) break;
     
     // Find the ratio between the two inputs
     ratio = (float)sensorValue1/sensorValue2;
@@ -160,6 +166,9 @@ void loop()
   
   while(1)
   {
+    
+    if(reset) break;
+    reset = digitalRead(resetButton);
     ; // Wait at end game until signal to restart
   }
 }
