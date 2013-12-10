@@ -18,12 +18,12 @@ void loop()
 {
   myservo.write(0);
   myservo2.write(0);
-  /*for(int i=0 ; i<15 ; i++)
+  for(int i=0 ; i<13 ; i++)
   {
     Serial.println(Pos);
     Pos = i * 5;
-    //myservo.write(Pos);
+    myservo.write(Pos);
     myservo2.write(Pos);
     delay(1000);
-  }*/
+  }
 }
