@@ -165,10 +165,8 @@ void loop()
   }
   
   while(1)
-  {
-    
+  { // Wait at end game until signal to restart
     if(reset) break;
     reset = digitalRead(resetButton);
-    ; // Wait at end game until signal to restart
   }
 }
